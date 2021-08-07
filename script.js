@@ -15,13 +15,18 @@ $(document).ready(function() {
 
   init();
 
+  setTimeout(function()
+  {
+    init();
+  }, 3000);
+
   setInterval(function ()
       {
         setTime();
       }, 1000
   );
 
-  setTimeout(function ()
+  setInterval(function ()
       {
         setAQI();
         getWeather();
@@ -34,6 +39,8 @@ function init()
   setAQI();
   setTime();
   getWeather();
+
+  $('#fahrenheit').click();
 }
 
 function setAQI()
