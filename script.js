@@ -86,6 +86,9 @@ function getWeather()
       case "Snow":
         $('.weather-icon').attr("src","img/031-snowflake.svg");
         break;
+      case "Haze":
+        $('.weather-icon').attr("src","img/010-windy.svg");
+        break;
       case "Extreme":
         $('.weather-icon').attr("src","img/033-hurricane.svg");
         break;
