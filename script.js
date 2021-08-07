@@ -69,25 +69,25 @@ function getWeather()
 
     switch (json.weather[0].main) {
       case "Clouds":
-        $('.weather-icon').attr("src","img/cloudy.png");
+        $('.weather-icon').attr("src","img/011-cloudy.svg");
         break;
       case "Clear":
-        $('.weather-icon').attr("src","img/sunny2.png");
+        $('.weather-icon').attr("src","img/039-sun.svg");
         break;
       case "Thunderstorm":
-        $('.weather-icon').attr("src","img/thunderstorm.png");
+        $('.weather-icon').attr("src","img/045-thunder.svg");
         break;
       case "Drizzle":
-        $('.weather-icon').attr("src","img/drizzle.png");
+        $('.weather-icon').attr("src","img/034-cloudy-1.svg");
         break;
       case "Rain":
-        $('.weather-icon').attr("src","img/rain.png");
+        $('.weather-icon').attr("src","img/003-rainy.svg");
         break;
       case "Snow":
-        $('.weather-icon').attr("src","img/snow.png");
+        $('.weather-icon').attr("src","img/031-snowflake.svg");
         break;
       case "Extreme":
-        $('.weather-icon').attr("src","img/warning.png");
+        $('.weather-icon').attr("src","img/033-hurricane.svg");
         break;
     }
     temp = (json.main.temp -273);
