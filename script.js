@@ -47,7 +47,9 @@ function setAQI()
 {
   $.getJSON("https://api.waqi.info/feed/grants%20pass/?token=14a9d611a3e0a2ca8e55a44d73fa5541970a3020", function(json)
   {
-    $('.aqi').html(JSON.stringify(json.data.aqi));
+    let aqi = JSON.stringify(json.data.aqi);
+
+    $('.aqi').html( aqi + " " + setAQIColor(aqi));
   });
 }
 
@@ -109,4 +111,36 @@ function getWeather()
     $('.sunset-time').html((sunsetDt.getHours()>12?(sunsetDt.getHours()-12):sunsetDt.getHours()).toString() + ":" + ((sunsetDt.getMinutes() < 10 ? '0' : '').toString() + sunsetDt.getMinutes().toString()) + (sunsetDt.getHours() < 12 ? ' AM' : ' PM').toString());
     $('#fahrenheit').click();
   });
+}
+
+function setAQIColor(aqi)
+{
+  let html = "";
+
+  if (aqi <= 50)
+  {
+      html = "<span style='color: green'>Good</span>";
+  }
+  else if (aqi > 50 && aqi <= 100)
+  {
+    html = "<span style='color: yellow'>Moderate</span>";
+  }
+  else if (aqi > 100 && aqi <= 150)
+  {
+    html = "<span style='color: orange'>Unhealthy</span>";
+  }
+  else if (aqi > 150 && aqi <= 200)
+  {
+    html = "<span style='color: red'>Bad</span>";
+  }
+  else if (aqi > 200 && aqi <= 500)
+  {
+    html = "<span style='color: purple'>Very Bad</span>";
+  }
+  else if (aqi > 500)
+  {
+    html = "<span style='color: #520552'>Hazardous</span>";
+  }
+
+  return html;
 }
