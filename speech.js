@@ -20,25 +20,25 @@ recognition.addEventListener("result", (e) =>
 		{
 			if (text.includes("time"))
 			{
-				$("#message").val("The time is " + $('#time').html());
+				$("#message").val("It's " + $('#time').html());
 				
 				text = "";
 			}
 			else if (text.includes("date"))
 			{
-				$("#message").val("The date is " + $('#date').html());
+				$("#message").val("It's " + $('#date').html());
 				
 				text = "";
 			}
 			else if (text.includes("temperature"))
 			{
-				$("#message").val("The temperature is " + $('#temperature').html() + " Fahrenheit");
+				$("#message").val("It's " + $('#temperature').html() + " Fahrenheit");
 				
 				text = "";
 			}
 			else if (text.includes("weather"))
 			{
-				$("#message").val("The temperature is " + $('#temperature').html() + " Fahrenheit");
+				$("#message").val("It's " + $('#temperature').html() + " Fahrenheit");
 				
 				text = "";
 			}
@@ -81,25 +81,25 @@ recognition.addEventListener("result", (e) =>
 
 let speech;
 
-recognition.addEventListener("end", () =>
-{
-	speech.text = $("#message").val();
-	speech.volume = 1;
-	speech.rate = 1;
-	speech.pitch = 1;
-	
-	window.speechSynthesis.speak(speech);
-	
-	recognition.start();
-	
-	text = "";
-	$("#message").val("");
-});
-
 $("#speakButton").on("click", function ()
 {
 	speech = new SpeechSynthesisUtterance();
 	$("#speakButton").hide();
+	
+	recognition.addEventListener("end", () =>
+	{
+		speech.text = $("#message").val();
+		speech.volume = 1;
+		speech.rate = 1;
+		speech.pitch = 1;
+		
+		window.speechSynthesis.speak(speech);
+		
+		recognition.start();
+		
+		text = "";
+		$("#message").val("");
+	});
 	
 	speech.addEventListener('start', function(event)
 	{
@@ -110,9 +110,9 @@ $("#speakButton").on("click", function ()
 	{
 		recognition.start();
 	});
+	
+	recognition.start();
 });
-
-recognition.start();
 
 function getAQIText(aqi)
 {
