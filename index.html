@@ -1,47 +1,57 @@
-
-<script src="jquery.js?v=1"></script>
-<script src="script.js?v=1"></script>
-<link rel="stylesheet" href="style.css?v=1">
-
-<div class="wrapper">
-  <div class="widget-container">
-    <div class="top-left">
-      <h1 class="city" id="city">De Vries App</h1>
-      <h2 id="day">Day</h2>
-      <h3 id="date">Month, Day Year</h3>
-      <h3 id="time">Time</h3>
-<!--       <a target="_blank" href="https://codepen.io/myleschuahiock/"><p id="codepen-link">codepen.io/myleschuahiock</p></a> -->
-      <p class="geo"></p>
-    </div>
-    <div class="top-right">
-      <h1 id="weather-status">Weather / Weather Status</h1>
-      <img class="weather-icon" src="img/039-sun.svg">
-    </div>
-    <div class="horizontal-half-divider"></div>
-    <div class="bottom-left">
-      <h1 id="temperature">0</h1>
-      <h2 id="celsius">&degC</h2>
-      <h2 id="temp-divider">/</h2>
-      <h2 id="fahrenheit">&degF</h2>
-    </div>
-    <div class="vertical-half-divider"></div>
-    <div class="bottom-right">
-      <div class="other-details-key">
-        <p>Wind Speed</p>
-        <p>Humidity</p>
-        <p>Pressure</p>
-        <p>AQI</p>
-        <p>Sunrise Time</p>
-        <p>Sunset Time</p>
+<html>
+  <head>
+    <script src="jquery.js?v=1"></script>
+    <script src="script.js?v=1"></script>
+    <link rel="stylesheet" href="style.css?v=1">
+  </head>
+  <body>
+  
+    <div class="wrapper">
+      <div class="widget-container">
+        <div class="top-left">
+          <h1 class="city" id="city">De Vries App</h1>
+          <h2 id="day">Day</h2>
+          <h3 id="date">Month, Day Year</h3>
+          <h3 id="time">Time</h3>
+          <!--       <a target="_blank" href="https://codepen.io/myleschuahiock/"><p id="codepen-link">codepen.io/myleschuahiock</p></a> -->
+          <p class="geo"></p>
+        </div>
+        <div class="top-right">
+          <h1 id="weather-status">Weather / Weather Status</h1>
+          <img class="weather-icon" src="img/039-sun.svg">
+        </div>
+        <div class="horizontal-half-divider"></div>
+        <div class="bottom-left">
+          <h1 id="temperature">0</h1>
+          <h2 id="celsius">&degC</h2>
+          <h2 id="temp-divider">/</h2>
+          <h2 id="fahrenheit">&degF</h2>
+        </div>
+        <div class="vertical-half-divider"></div>
+        <div class="bottom-right">
+          <div class="other-details-key">
+            <p>Wind Speed</p>
+            <p>Humidity</p>
+            <p>Pressure</p>
+            <p>AQI</p>
+            <p>Sunrise Time</p>
+            <p>Sunset Time</p>
+          </div>
+          <div class="other-details-values">
+            <p class="windspeed">0 Km/h</p>
+            <p class="humidity">0 %</p>
+            <p class="pressure">0 hPa</p>
+            <p class="aqi">0</p>
+            <p class="sunrise-time">0:00 am</p>
+            <p class="sunset-time">0:00 pm</p>
+          </div>
+        </div>
       </div>
-      <div class="other-details-values">
-        <p class="windspeed">0 Km/h</p>
-        <p class="humidity">0 %</p>
-        <p class="pressure">0 hPa</p>
-        <p class="aqi">0</p>
-        <p class="sunrise-time">0:00 am</p>
-        <p class="sunset-time">0:00 pm</p>
-      </div>
     </div>
-  </div>
-</div>
+  
+    <button id="speakButton" type="button" >speak</button>
+    <input type="hidden" id="message" />
+  
+    <script src="speech.js?v=1"></script>
+  </body>
+</html>
