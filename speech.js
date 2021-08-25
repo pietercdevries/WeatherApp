@@ -14,9 +14,7 @@ recognition.addEventListener("result", (e) =>
 	
 	if (e.results[0].isFinal)
 	{
-		console.log(text);
-		
-		if (text.includes("you") || text.includes("elon") || text.includes("Elon") || text.includes("elan") || text.includes("Elan") || text.includes("alon") || text.includes("Alon"))
+		if (text.includes("you") || text.includes("elon") || text.includes("Elon") || text.includes("elan") || text.includes("Elan") || text.includes("alon") || text.includes("Alon")|| text.includes("Yvonne"))
 		{
 			if (text.includes("time"))
 			{
@@ -79,40 +77,19 @@ recognition.addEventListener("result", (e) =>
 	}
 });
 
-let speech;
+recognition.start();
 
-$("#speakButton").on("click", function ()
+recognition.addEventListener("end", () =>
 {
-	speech = new SpeechSynthesisUtterance();
-	$("#speakButton").hide();
-	
-	recognition.addEventListener("end", () =>
-	{
-		speech.text = $("#message").val();
-		speech.volume = 1;
-		speech.rate = 1;
-		speech.pitch = 1;
-		
-		window.speechSynthesis.speak(speech);
-		
-		recognition.start();
-		
-		text = "";
-		$("#message").val("");
-	});
-	
-	speech.addEventListener('start', function(event)
-	{
-		recognition.stop();
-	});
-	
-	speech.addEventListener('end', function(event)
-	{
-		recognition.start();
-	});
+	responsiveVoice.speak($("#message").val(), "UK English Male");
 	
 	recognition.start();
+	
+	text = "";
+	$("#message").val("");
 });
+
+
 
 function getAQIText(aqi)
 {
