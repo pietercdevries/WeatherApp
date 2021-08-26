@@ -150,6 +150,10 @@ function typeWriter()
 {
 	if (i < txt.length)
 	{
+		$("#teslaBot").show();
+		$("#messageBubble").show();
+		$(".widget-container").css("filter", "blur(5px)");
+		
 		document.getElementById("messageBubble").innerHTML += txt.charAt(i);
 		i++;
 		setTimeout(typeWriter, speed);
@@ -159,6 +163,9 @@ function typeWriter()
 		setTimeout(function ()
 		{
 			$("#messageBubble").hide();
+			$("#teslaBot").hide();
+			$(".widget-container").css("filter", "unset");
+			clearInterval(listening);
 			
 			i = 0;
 			txt = "";
