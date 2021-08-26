@@ -4,6 +4,11 @@ const recognition = new SpeechRecognition();
 recognition.interimResults = true;
 
 let text = "";
+let listen = false;
+let listening = null;
+let i = 0;
+let txt = "";
+let speed = 100;
 
 recognition.addEventListener("result", (e) =>
 {
@@ -16,47 +21,55 @@ recognition.addEventListener("result", (e) =>
 	{
 		if (text.includes("you") || text.includes("elon") || text.includes("Elon") || text.includes("elan") || text.includes("Elan") || text.includes("alon") || text.includes("Alon")|| text.includes("Yvonne"))
 		{
+			if (listening != null)
+			{
+				clearInterval(listening);
+			}
+			
+			$("#messageBubble").html("");
+			$("#teslaBot").show();
+			$(".widget-container").css("filter", "blur(5px)");
+			
+			listen = true;
+			
+			listening = setTimeout(function ()
+			{
+				listen = false;
+				$("#teslaBot").hide();
+				$("#messageBubble").hide();
+				$(".widget-container").css("filter", "unset");
+			}, 6000);
+		}
+		
+		if (listen === true)
+		{
 			if (text.includes("time"))
 			{
 				$("#message").val("It's " + $('#time').html());
-				
-				text = "";
 			}
 			else if (text.includes("date"))
 			{
 				$("#message").val("It's " + $('#date').html());
-				
-				text = "";
 			}
 			else if (text.includes("temperature"))
 			{
 				$("#message").val("It's " + $('#temperature').html() + " Fahrenheit");
-				
-				text = "";
 			}
 			else if (text.includes("weather"))
 			{
 				$("#message").val("It's " + $('#temperature').html() + " Fahrenheit");
-				
-				text = "";
 			}
 			else if (text.includes("wind") && text.includes("speed"))
 			{
 				$("#message").val("The wind speed is " + $('.windspeed').html());
-				
-				text = "";
 			}
 			else if (text.includes("pressure"))
 			{
 				$("#message").val("The air pressure is " + $('.pressure').html().replaceAll(" hPa", "") + " pascal");
-				
-				text = "";
 			}
 			else if (text.includes("humidity"))
 			{
 				$("#message").val("The humidity is " + $('.humidity').html());
-				
-				text = "";
 			}
 			else if (text.includes("aqi") || text.includes("air") || text.includes("quality"))
 			{
@@ -65,12 +78,12 @@ recognition.addEventListener("result", (e) =>
 					let aqi = JSON.stringify(json.data.aqi);
 					$("#message").val("The air quality is " + getAQIText(aqi) + " at " + aqi);
 				});
-				
-				text = "";
 			}
 			else
 			{
 				$("#message").val("");
+				$("#messageBubble").html($("#message").val());
+				$("#messageBubble").hide();
 				text = "";
 			}
 		}
@@ -85,11 +98,34 @@ recognition.addEventListener("end", () =>
 	
 	recognition.start();
 	
+	if (text !== "" && text !== " " && listen === true)
+	{
+		i = 0;
+		txt = $("#message").val();
+		$("#messageBubble").show();
+		typeWriter();
+		resetSpeech();
+	}
+	
 	text = "";
 	$("#message").val("");
 });
 
-
+function resetSpeech()
+{
+	text = "";
+	listen = false;
+	
+	setInterval(function ()
+	{
+		$("#messageBubble").hide();
+		$(".widget-container").css("filter", "unset");
+		
+		i = 0;
+		txt = "";
+		
+	}, 4000);
+}
 
 function getAQIText(aqi)
 {
@@ -121,4 +157,14 @@ function getAQIText(aqi)
 	}
 	
 	return name;
+}
+
+function typeWriter()
+{
+	if (i < txt.length)
+	{
+		document.getElementById("messageBubble").innerHTML += txt.charAt(i);
+		i++;
+		setTimeout(typeWriter, speed);
+	}
 }
