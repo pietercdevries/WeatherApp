@@ -2,7 +2,7 @@ let temp = 0;
 
 $(document).ready(function()
 {
-  document.body.style.zoom = "190%";
+  document.body.style.zoom = "175%";
   
   $('#fahrenheit').click(function ()
   {
