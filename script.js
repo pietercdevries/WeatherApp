@@ -1,7 +1,11 @@
 let temp = 0;
 
-$(document).ready(function() {
-  $('#fahrenheit').click(function () {
+$(document).ready(function()
+{
+  document.body.style.zoom = "190%";
+  
+  $('#fahrenheit').click(function ()
+  {
     $(this).css("color", "white");
     $('#celsius').css("color", "#b0bec5");
     $('#temperature').html(Math.round(temp * 1.8 + 32));

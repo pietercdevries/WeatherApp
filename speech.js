@@ -8,7 +8,7 @@ let listen = false;
 let listening = null;
 let i = 0;
 let txt = "";
-let speed = 100;
+let speed = 120;
 
 recognition.addEventListener("result", (e) =>
 {
@@ -36,7 +36,6 @@ recognition.addEventListener("result", (e) =>
 			{
 				listen = false;
 				$("#teslaBot").hide();
-				$("#messageBubble").hide();
 				$(".widget-container").css("filter", "unset");
 			}, 6000);
 		}
@@ -82,8 +81,6 @@ recognition.addEventListener("result", (e) =>
 			else
 			{
 				$("#message").val("");
-				$("#messageBubble").html($("#message").val());
-				$("#messageBubble").hide();
 				text = "";
 			}
 		}
@@ -115,16 +112,6 @@ function resetSpeech()
 {
 	text = "";
 	listen = false;
-	
-	setInterval(function ()
-	{
-		$("#messageBubble").hide();
-		$(".widget-container").css("filter", "unset");
-		
-		i = 0;
-		txt = "";
-		
-	}, 4000);
 }
 
 function getAQIText(aqi)
@@ -166,5 +153,15 @@ function typeWriter()
 		document.getElementById("messageBubble").innerHTML += txt.charAt(i);
 		i++;
 		setTimeout(typeWriter, speed);
+	}
+	else
+	{
+		setTimeout(function ()
+		{
+			$("#messageBubble").hide();
+			
+			i = 0;
+			txt = "";
+		}, 1000);
 	}
 }
